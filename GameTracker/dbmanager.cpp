@@ -4,6 +4,7 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QDebug>
+#include <QDate>
 
 
 /**
@@ -161,9 +162,193 @@ QSqlDatabase DbManager::myDb(){
     return m_db;
 }
 
+/**
+ * @brief DbManager::updateStatus
+ * @param status
+ * @param name
+ * @return
+ */
+bool DbManager::updateStatus(QString status, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
 
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET status = (:status), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":status", status);
 
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+}
 
+/**
+ * @brief DbManager::updateNote
+ * @param note
+ * @param name
+ * @return
+ */
+bool DbManager::updateNote(QString note, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET note = (:note), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":note", note);
+
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+}
+/**
+ * @brief DbManager::updateGenre
+ * @param genre
+ * @param name
+ * @return
+ */
+bool DbManager::updateGenre(QString genre, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET genre = (:genre), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":genre", genre);
+
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+}
+
+/**
+ * @brief DbManager::updateReleased
+ * @param released
+ * @param name
+ * @return
+ */
+bool DbManager::updateReleased(QString released, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET released = (:released), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":released", released);
+
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+
+}
+
+/**
+ * @brief DbManager::updateTime
+ * @param time
+ * @param name
+ * @return
+ */
+bool DbManager::updateTime(int time, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET time = (:time), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":time", time);
+
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+
+}
+
+/**
+ * @brief DbManager::updateMetadata
+ * @param metadata
+ * @param name
+ * @return
+ */
+bool DbManager::updateMetadata(int metadata, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET metadata = (:metadata), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":metadata", metadata);
+
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+
+}
+
+/**
+ * @brief DbManager::updateRating
+ * @param rating
+ * @param name
+ * @return
+ */
+bool DbManager::updateRating(int rating, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET rating = (:rating), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":rating", rating);
+
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+
+}
+
+/**
+ * @brief DbManager::updateSynopsis
+ * @param synopsis
+ * @param name
+ * @return
+ */
+bool DbManager::updateSynopsis(QString synopsis, QString name){
+    bool success = false;
+    QString modified = this->nowDate();
+    QSqlQuery checkQuery;
+    checkQuery.prepare("UPDATE gameTable SET synopsis = (:synopsis), dateModified = (:modified) WHERE name = (:name)");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":modified", modified);
+    checkQuery.bindValue(":synopsis", synopsis);
+
+    if(checkQuery.exec()){
+        success = true;
+    }
+    return success;
+
+}
+
+/**
+ * @brief DbManager::nowDate
+ * getting the current date for dateModified
+ * @return
+ * returns current date as string
+ */
+QString DbManager::nowDate(){
+    QDate date;
+    date.currentDate();
+    QString date_string;
+    date_string = date.toString("dd/MM/yyyy");
+    return date_string;
+
+}
 
 
 
