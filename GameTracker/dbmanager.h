@@ -19,7 +19,7 @@ public:
      * @param path - path to db
      *
      */
-    DbManager(const QString &path);
+    DbManager();
 
     /**
      *@brief Destructor

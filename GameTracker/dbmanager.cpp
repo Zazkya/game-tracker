@@ -5,6 +5,7 @@
 #include <QSqlRecord>
 #include <QDebug>
 #include <QDate>
+#include <QCoreApplication>
 
 
 /**
@@ -13,9 +14,12 @@
  * @param path
  * path of db
  */
-DbManager::DbManager(const QString &path){
+DbManager::DbManager(){
     m_db = QSqlDatabase::addDatabase("QSQLITE");
+    QString myPath = QCoreApplication::applicationDirPath();
+    QString path = myPath + "/example.db";
     m_db.setDatabaseName(path);
+    m_db.open();
     //TODO: add message for failed connect
 }
 
@@ -343,7 +347,7 @@ bool DbManager::updateSynopsis(QString synopsis, QString name){
  */
 QString DbManager::nowDate(){
     QDate date;
-    date.currentDate();
+    date = QDate::currentDate();
     QString date_string;
     date_string = date.toString("dd/MM/yyyy");
     return date_string;
