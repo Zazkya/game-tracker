@@ -104,7 +104,7 @@ bool DbManager::entryExists(QString &name){
  */
 QSqlQuery DbManager::queryAll(){
     QSqlQuery query;
-    query.prepare("SELECT name, platform, genre, status, dateAdded, dateModified FROM gameTable");
+    query.prepare("SELECT name, platform, genre, status, dateAdded, dateModified, eTime, rating FROM gameTable");
     query.exec();
     return query;
 }

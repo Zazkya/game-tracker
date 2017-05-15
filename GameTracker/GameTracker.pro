@@ -26,10 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     dbmanager.cpp \
-    bindingdb.cpp
+    modelcreator.cpp \
+    jsonparser.cpp
 
 HEADERS  += mainwindow.h \
     dbmanager.h \
-    bindingdb.h
+    modelcreator.h \
+    jsonparser.h
 
 FORMS    += mainwindow.ui
